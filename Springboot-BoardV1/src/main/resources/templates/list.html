@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 리스트</title>
+    <link rel="stylesheet" href="/default.css">
+</head>
+<body>
+<div id="container">
+  <h1>[ 게시판 - 리스트 ]</h1>
+  <p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>조회수</th>
+      <th>작성일</th>
+    </tr>
+    <tr th:each="board: ${boards}">
+      <td class="center" th:text="${boardStat.count}">일련번호</td>
+      <td><a th:href="@{/read(id=${board.id})}" th:text="${board.title}">제목</td>
+      <td class="center" th:text="${board.username}">작성자</td>
+      <td class="center" th:text="${board.hit}">조회수</td>
+      <td class="center" th:text="${#temporals.format(board.created_time, 'yyyy-MM-dd')}">작성일</td>
+    </tr>
+  </table>
+  <p>
+  <div class="center">
+    <input type="button" onclick="location.href='/'" value="메인으로">
+    <input type="button" onclick="location.href='/write'" value="글쓰기">
+  </div>
+</div>
+</body>
+</html>
